@@ -26,7 +26,21 @@ class LinkList {
     this.length++;
     return this;
   }
-  prepand() {}
+  prepand(value) {
+    const newNode = new Node(value);
+
+    //if the node is empty
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      //if the node is not empty
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
   insert() {}
   remove() {}
   print() {
@@ -44,5 +58,6 @@ const linkList = new LinkList();
 linkList.append(1);
 linkList.append(2);
 linkList.append(3);
+linkList.prepand(0);
 
 linkList.print();
