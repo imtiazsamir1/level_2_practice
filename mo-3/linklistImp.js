@@ -41,8 +41,50 @@ class LinkList {
     this.length++;
     return this;
   }
-  insert() {}
+  insert(index, value) {
+    //if unsexpected input
+
+    if (index < 0 || index > this.length) {
+      console.log("index array of bounds");
+      return undefined;
+    }
+    // if the insert is in the start of the linked list
+
+    if (index === 0) {
+      return this.prepand(value);
+    }
+
+    // if the insert is in the end of the list
+
+    if (index === this.length) {
+      return this.append(value);
+    }
+    // if the insert is in the middle
+
+    // find the leading node
+
+    const leadingNode = this._traversToIndex(index - 1);
+    const holdingNode = leadingNode.next;
+    const newNode = new Node(value);
+
+    holdingNode.next = newNode;
+    newNode.next = holdingNode;
+
+    this.length++;
+  }
   remove() {}
+
+  _traversToIndex(index) {
+    let count = 0;
+    let currentNode = this.head;
+
+    while (count !== index) {
+      currentNode = currentNode.next;
+      count++;
+    }
+    return currentNode;
+  }
+
   print() {
     const arr = [];
     let currentNode = this.head;
