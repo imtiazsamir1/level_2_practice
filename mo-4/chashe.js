@@ -9,7 +9,7 @@ const expensiveTask = (id) => {
   };
 };
 
-//call
+//if  has call
 const getData = (id) => {
   if (dataCache.has(id)) {
     console.log("cache hit,Id:", id);
