@@ -46,3 +46,27 @@ const commonFriendsSlow = (usersA, usersB) => {
   return { count: commonFriends.length, timeTookToFinish: endTime - startTime };
 };
 console.log(commonFriendsSlow(usersA, usersB));
+//
+
+const commonFriendsFast = (usersA, usersB) => {
+  const startTime = performance.now();
+
+  const commonFriends = [];
+
+  //* O(n)
+  const idListA = new Set(usersA.map((user) => user.id));
+
+  //* O(n)
+  usersB.forEach((userB) => {
+    //* O(1) lookup
+    if (idListA.has(userB.id)) {
+      commonFriends.push(userB);
+    }
+  });
+
+  const endTime = performance.now();
+
+  return { count: commonFriends.length, timeTookToFinish: endTime - startTime };
+};
+
+console.log(commonFriendsFast(usersA, usersB));
