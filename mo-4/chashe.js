@@ -1,3 +1,5 @@
+const dataCache = new Map();
+
 const expensiveTask = (id) => {
   console.log("runt the expensive for:", id);
   return {
@@ -9,6 +11,17 @@ const expensiveTask = (id) => {
 
 //call
 const getData = (id) => {
-  return expensiveTask(id);
+  if (dataCache.has(id)) {
+    console.log("cache hit,Id:", id);
+    return dataCache.get(id);
+  }
+  //if no find
+  console.log("cache misss,Id:", id);
+  const data = expensiveTask(id);
+  dataCache.set(id, data);
+  return data;
 };
-console.log(getData(123));
+console.log(dataCache);
+console.log(getData(1245));
+console.log(getData(1245));
+console.log(dataCache);
