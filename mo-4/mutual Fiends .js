@@ -19,9 +19,30 @@ for (let i = 0; i < USER_COUNT; i++) {
   usersA.push(createUser(i));
   usersB.push(createUser(i + 25000));
 }
-console.log(usersA);
-console.log(usersB);
+//console.log(usersA);
+//console.log(usersB);
 // users 25000 to 49999 are common (25,000 common users)
 //----------Data setup block---------------//
 
 // --- ALGORITHMS --- //
+
+const commonFriendsSlow = (usersA, usersB) => {
+  const startTime = performance.now();
+
+  const commonFriends = [];
+
+  //! O(n^2)
+  usersA.forEach((userA) => {
+    //* O(n)
+    usersB.forEach((userB) => {
+      if (userA.id === userB.id) {
+        commonFriends.push(userB);
+      }
+    });
+  });
+
+  const endTime = performance.now();
+
+  return { count: commonFriends.length, timeTookToFinish: endTime - startTime };
+};
+console.log(commonFriendsSlow(usersA, usersB));
