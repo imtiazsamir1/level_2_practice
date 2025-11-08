@@ -23,11 +23,11 @@ const twoSum = (arr, target) => {
 
     console.log("Current Number", currentNumber);
     console.log("Complement", complement);
-
+    //! if found
     if (numbMap.has(complement)) {
       return [numbMap.get(complement), i];
     }
-
+    //! if not found
     numbMap.set(currentNumber, i);
 
     console.log(numbMap);
@@ -36,4 +36,4 @@ const twoSum = (arr, target) => {
   return undefined;
 };
 
-console.log(twoSum([2, 11, 8, 15], 9));
+console.log(twoSum([2, 11, 7, 15], 9));
