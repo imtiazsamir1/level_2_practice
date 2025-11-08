@@ -18,10 +18,23 @@ import Stack from "../mo-3/stack.js";
 const bracketChacker = (str) => {
   const stack = new Stack();
 
+  const bracketMap = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
+  };
+
   for (let i = 0; i < str.length; i++) {
-    const element = str[i];
-    console.log(element);
+    const char = str[i];
+    if (char === "(" || char === "{" || char === "[") {
+      stack.push(char);
+    } else if (char === ")" || char === "}" || char === "]") {
+      if (stack.isEmpty() || stack.pop() !== bracketMap[char]) {
+        return false;
+      }
+    }
   }
+  return stack.isEmpty();
 };
 
-console.log(bracketChacker("()[]{}"));
+console.log(bracketChacker("(()[]{}"));
